@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body>
+    <h1>Registration Form</h1>
+    <form action="/section.php">
+        <fieldset>
+            <legend>Register Here</legend>
+
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required 
+                    pattern="[A-Za-z\s]{2,50}"
+                    title="Name should contain only letters and spaces (2-50 characters)"><br><br>
+            </div>
+            <div>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required 
+                    min="18" max="100"
+                    title="Age must be between 18 and 100"><br><br>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required 
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    title="Enter a valid email address"><br><br>
+            </div>
+
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Password must be at least 8 characters and include uppercase, lowercase, and a number"><br><br>
+            </div>
+
+            <div>
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required><br><br>
+            </div>
+            <div>
+                <label for="terms">Accept Terms and Conditions:</label>
+                <input type="checkbox" id="terms" name="terms" required><br><br>
+            </div>
+            <div>
+                <button type="submit">Register</button>
+            </div>
+        </fieldset>
+    </form>
+</body>
+</html>
