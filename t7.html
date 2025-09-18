@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Validation Example</title>
+  <style>
+    .error { color: red; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <form id="myForm">
+    <label>Name: <input type="text" id="name" required></label>
+    <span class="error" id="nameError"></span><br><br>
+    <label>Email: <input type="email" id="email" required></label>
+    <span class="error" id="emailError"></span><br><br>
+    <label>Phone: <input type="tel" id="phone"></label>
+    <span class="error" id="phoneError"></span><br><br>
+    <label>Username: <input type="text" id="username"></label>
+    <span class="error" id="usernameError"></span><br><br>
+    <label>Password: <input type="password" id="password"></label>
+    <span class="error" id="passwordError"></span><br><br>
+    <label>Confirm Password: <input type="password" id="confirmPassword"></label>
+    <span class="error" id="confirmError"></span><br><br>
+    <label>Start Date: <input type="date" id="startDate"></label>
+    <label>End Date: <input type="date" id="endDate"></label>
+    <span class="error" id="dateError"></span><br><br>
+    <label>Age: <input type="number" id="age" min="18" max="60"></label>
+    <span class="error" id="ageError"></span><br><br>
+    <label>Country:
+      <select id="country">
+        <option value="">--Select--</option>
+        <option>USA</option>
+        <option>Canada</option>
+        <option>India</option>
+      </select>
+    </label>
+    <span class="error" id="countryError"></span><br><br>
+    <label>Employee ID: <input type="text" id="empId" 
+        pattern="^EMP-\d{4}$" 
+        title="Use format EMP-1234"></label>
+    <br><br>
+    <button type="submit">Submit</button>
+  </form>
+  <script>
+    document.getElementById("myForm").addEventListener("submit", function(e) {
+      let valid = true;
+      const name = document.getElementById("name").value.trim();
+      if (name === "") {
+        document.getElementById("nameError").textContent = "Name is required.";
+        valid = false;
+      } else {
+        document.getElementById("nameError").textContent = "";
+      }
+      const emailEl = document.getElementById("email");
+      const email = emailEl.value.trim();
+      if (email === "") {
+        document.getElementById("emailError").textContent = "Email is required.";
+        valid = false;
+      } else if (!emailEl.checkValidity()) {
+        document.getElementById("emailError").textContent = "Invalid email format.";
+        valid = false;
+      } else {
+        document.getElementById("emailError").textContent = "";
+      }
+      const phone = document.getElementById("phone").value.trim();
+      if (phone && !/^\d{10}$/.test(phone)) {
+        document.getElementById("phoneError").textContent = "Phone must be 10 digits.";
+        valid = false;
+      } else {
+        document.getElementById("phoneError").textContent = "";
+      }
+      const username = document.getElementById("username").value.trim();
+      if (username && !/^[A-Za-z]+$/.test(username)) {
+        document.getElementById("usernameError").textContent = "Letters only.";
+        valid = false;
+      } else {
+        document.getElementById("usernameError").textContent = "";
+      }
+      const password = document.getElementById("password").value.trim();
+      if (password.length < 6) {
+        document.getElementById("passwordError").textContent = "Password must be 6+ chars.";
+        valid = false;
+      } else {
+        document.getElementById("passwordError").textContent = "";
+      }
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
+      if (password !== confirmPassword) {
+        document.getElementById("confirmError").textContent = "Passwords do not match.";
+        valid = false;
+      } else {
+        document.getElementById("confirmError").textContent = "";
+      }
+      const start = document.getElementById("startDate").value;
+      const end = document.getElementById("endDate").value;
+      if (start && end && new Date(start) > new Date(end)) {
+        document.getElementById("dateError").textContent = "Start must be before End.";
+        valid = false;
+      } else {
+        document.getElementById("dateError").textContent = "";
+      }
+      const age = parseInt(document.getElementById("age").value.trim());
+      if (age && (age < 18 || age > 60)) {
+        document.getElementById("ageError").textContent = "Age must be 18–60.";
+        valid = false;
+      } else {
+        document.getElementById("ageError").textContent = "";
+      }
+      const country = document.getElementById("country").value;
+      if (country === "") {
+        document.getElementById("countryError").textContent = "Select a country.";
+        valid = false;
+      } else {
+        document.getElementById("countryError").textContent = "";
+      }
+      if (!valid) e.preventDefault();
+    });
+  </script>
+</body>
+</html>
