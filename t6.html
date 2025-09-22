@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Content Properties</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
+        div, p { border: 1px solid #ccc; padding: 10px; margin-bottom: 15px; }
+        button { padding: 8px 12px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h1>DOM Content Manipulation</h1>
+
+    <h2>1. Using innerHTML</h2>
+    <div id="div-one">This content will be completely replaced.</div>
+
+    <h2>2. Using textContent to Remove HTML</h2>
+    <div id="div-two">This div contains <strong>bolded HTML tags</strong> inside it.</div>
+
+    <h2>3. innerText vs. textContent (Check Console)</h2>
+    <div id="div-three">
+        This is visible text.
+        <span style="display: none;">This text is hidden with CSS.</span>
+    </div>
+
+    <h2>4. Dynamic Update on Load</h2>
+    <p id="p-dynamic">Initial paragraph text.</p>
+
+    <h2>5. Button Click to Replace Content</h2>
+    <div id="div-five">I will be replaced when you click the button.</div>
+    <button id="replace-btn">Click Me!</button>
+
+    <!-- <script>
+        // Wait for the DOM to be fully loaded before running any scripts
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // 1. Use innerHTML to replace content with new HTML elements.
+            // innerHTML parses the string as HTML and creates the corresponding DOM nodes.
+            const divOne = document.getElementById('div-one');
+            divOne.innerHTML = '<h2>A New Heading</h2><p>And a new paragraph has been added!</p>';
+            
+            // 2. Use textContent to set text and strip any HTML.
+            // Notice how the <strong> tags from the original HTML are removed.
+            const divTwo = document.getElementById('div-two');
+            divTwo.textContent = 'Plain text only';
+            // 3. Show the difference between innerText and textContent.
+            const divThree = document.getElementById('div-three');
+            console.log("--- Difference Demo ---");
+            // innerText is CSS-aware; it will NOT show the hidden text.
+            console.log("innerText:", divThree.innerText); 
+            // textContent is NOT CSS-aware; it shows ALL text content, including hidden text.
+            console.log("textContent:", divThree.textContent);
+            // 4. Change paragraph text dynamically on page load.
+            // This runs as soon as the DOM is ready.
+            const pDynamic = document.getElementById('p-dynamic');
+            pDynamic.textContent = 'Updated by JavaScript!';
+            // 5. Create a button click event listener.
+            // This function will only run when the button is clicked.
+            const replaceBtn = document.getElementById('replace-btn');
+            const divFive = document.getElementById('div-five');
+            replaceBtn.addEventListener('click', () => {
+                divFive.innerHTML = '<h3>New Heading Inside Div</h3>';
+            });
+        });
+    </script> -->
+   
+</body>
+</html>
